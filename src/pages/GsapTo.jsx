@@ -9,6 +9,9 @@ const GsapTo = () => {
       x: 250, //moves it from 0 to 250
       repeat: -1, //makes the animation repeat
       yoyo: true, //makes animation reverse on every other cycle
+      rotation: 360, //makes the nimation rotate
+      duration : 2, //determines how long the animation goes from start to finish
+      ease: 'elastic' //how the animation plays
     })
   }, [])
 
