@@ -1,6 +1,34 @@
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/all";
+import { useRef } from "react";
+// scroll trigger is a plugin which means we have to initiate it
+gsap.registerPlugin(ScrollTrigger)
+// passing the scrolltrigger into the register plugin will make it work
 const GsapScrollTrigger = () => {
+  // you also have to define a reference
+  const scrollRef = useRef();
   // TODO: Implement the gsap scroll trigger
-
+  useGSAP(() => {
+    // you can get the children by using the react ref
+    // the animation will play when the user first loads the page and not when we get
+    // to that part of the page, to fix that we can add a scrolltrigger property, which is an object
+    const boxes = gsap.utils.toArray(scrollRef.current.children) //puts all of the scrollref's childre into an array
+    boxes.forEach((box) => {
+      gsap.to(box, {
+        x: 150,
+        rotation: 360,
+        borderRadius: '100%',
+        scale: 1.5,
+        scrollTrigger: {
+          trigger: box,
+          start: 'bottom bottom',
+          end: 'top 20%',
+          scrub:true
+        }
+      })
+    })
+  }, [])
   return (
     <main>
       <h1>GsapScrollTrigger</h1>
@@ -50,8 +78,8 @@ const GsapScrollTrigger = () => {
           <path d="M5 12l7 7 7-7" />
         </svg>
       </div>
-
-      <div className="mt-20 w-full h-screen">
+    {/* can attach references to elements using ref after you do this you can start animating*/}
+      <div className="mt-20 w-full h-screen" ref={scrollRef}>
         <div
           id="scroll-pink"
           className="scroll-box w-20 h-20 rounded-lg bg-pink-500"
