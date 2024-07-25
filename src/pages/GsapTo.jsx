@@ -1,5 +1,16 @@
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 const GsapTo = () => {
   // TODO: Implement the gsap.to() method
+  // it works a lot like useEffect
+  // define a cb function and a dependency array for when you want it to run
+  useGSAP(() => {
+    gsap.to('#blue-box', {
+      x: 250, //moves it from 0 to 250
+      repeat: -1, //makes the animation repeat
+      yoyo: true, //makes animation reverse on every other cycle
+    })
+  }, [])
 
   return (
     <main>
