@@ -1,6 +1,28 @@
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+
 const GsapStagger = () => {
   // TODO: Implement the gsap.stagger() method
-
+  // stagger allows you to apply animations with a stagger delay to a group of elements
+  // stagger is a property you can apply to any animation
+  // you can get more complex by identifying stagger property as an object
+  useGSAP(() => {
+    gsap.to('.stagger-box', {
+      y: 250,
+      rotation: 360,
+      borderRadius: '100%',
+      repeat: -1,
+      yoyo: true,
+      // stagger: 0.5
+      stagger: {
+        amount: 1.5, //amount of time to stagger between each element
+        grid: [11,1], //selects the number of rows and columns in a grid
+        axis: 'y', //choose the axis along which the animations stagger, x would make them happen at the same time
+        ease: 'circ.inOut',
+        from: 'center' //choose where the stagger starts
+      }
+    })
+  })
   return (
     <main>
       <h1>GsapStagger</h1>
