@@ -1,7 +1,25 @@
-// import { useGSAP } from "@gsap/react";
-// import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 const GsapFromTo = () => {
   // TODO: Implement the gsap.fromTo() method
+  // in fromto you can identify both where you want to go to and where you want the new state to end
+  // the first object is the from object, the second object is the to object
+  useGSAP(() => {
+    gsap.fromTo('#red-box',{
+      x:0,
+      roation:0,
+      borderRadius: '0%'
+    },
+      {
+      x: 250, //moves it from 0 to 250
+      repeat: -1, //makes the animation repeat
+      yoyo: true, //makes animation reverse on every other cycle
+      borderRadius: '100%',
+      rotation: 360, //makes the nimation rotate
+      duration : 2, //determines how long the animation goes from start to finish
+      ease: 'power1.inOut' //how the animation plays
+    })
+  }, [])
   return (
     <main>
       <h1>GsapFromTo</h1>

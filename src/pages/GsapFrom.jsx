@@ -1,5 +1,19 @@
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 const GsapFrom = () => {
   // TODO: Implement the gsap.from() method
+  // the only difference between from and to is that from starts at the new positoin,
+  // whereas to moves to the new position
+  useGSAP(() => {
+    gsap.from('#green-box', {
+      x: 250, //moves it from 0 to 250
+      repeat: -1, //makes the animation repeat
+      yoyo: true, //makes animation reverse on every other cycle
+      rotation: 360, //makes the nimation rotate
+      duration : 2, //determines how long the animation goes from start to finish
+      ease: 'power1.inOut' //how the animation plays
+    })
+  }, [])
 
   return (
     <main>
